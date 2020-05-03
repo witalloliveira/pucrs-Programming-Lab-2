@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "Telefone.hpp"
+#include "../src/Telefone.hpp"
 
 using namespace std;
 
@@ -11,10 +11,10 @@ Telefone::Telefone() {
     numero = 0;
 }
 
-Telefone::Telefone(int ddi, int ddd, int numero) {
-    setDDI(int ddi);
-    setDDI(int ddd);
-    setDDI(long numero);
+Telefone::Telefone(int ddi, int ddd, long numero) {
+    setDDI(ddi);
+    setDDI(ddd);
+    setDDI(numero);
 }
 
 int Telefone::getDDI() { return ddi; }
@@ -26,11 +26,24 @@ void Telefone::setDDD(int ddd) { this->ddd = ddd; }
 long Telefone::getNumero() { return numero; }
 void Telefone::setNumero(long numero) { this->numero = numero; }
 
-string Telefone::toString() {
+string Telefone::toString() { 
     string strDDI = to_string(getDDI());
     string strDDD = to_string(getDDD());
     string strNumero = to_string(getNumero());
-    string strTelefone = strDDI + strDDD + strNumero;
+    
+    string subStrNumeroBegin = strNumero.substr(0,4);
+    string subStrNumeroEnd = strNumero.substr(4,4);
+    
+    string strTelefone = 
+        "+" + 
+        strDDI + 
+        "(" + 
+        strDDD + 
+        ")" +
+        subStrNumeroBegin +
+        "-" +
+        subStrNumeroEnd;
+    
     return strTelefone;
 }
 
@@ -38,11 +51,19 @@ string Telefone::toCSV(char separador=';') {
     string strDDI = to_string(getDDI());
     string strDDD = to_string(getDDD());
     string strNumero = to_string(getNumero());
+    
     string strTelefone = 
         strDDI + 
         separador + 
         strDDD + 
         separador +
         strNumero;
+    
     return strTelefone;
+}
+
+bool Telefone::operator== (const Telefone &tEquals) const {
+    return (ddi == tEquals.ddi &&
+            ddd == tEquals.ddd &&
+            numero == tEquals.numero);
 }

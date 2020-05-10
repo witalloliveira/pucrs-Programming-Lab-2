@@ -11,9 +11,6 @@ Cnpj::Cnpj()
 	setRaiz("00000000");
 	setFilial("0000");
 	setDV("00");
-	//raiz = "00000000";
-	//filial = "0000";
-	//dv = "00";
 }
 
 Cnpj::Cnpj(string raiz, string filial, string dv)

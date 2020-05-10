@@ -1,5 +1,5 @@
-#ifndef __CNPJ_HPP__
-#define __CNPJ_HPP__
+#ifndef __CNPJ_H__
+#define __CNPJ_H__
 
 #include <string>
 
@@ -35,4 +35,4 @@ public:
 	bool operator==(Cnpj &cnpj);
 };
 
-#endif // __CNPJ_HPP__
+#endif // __CNPJ_H__

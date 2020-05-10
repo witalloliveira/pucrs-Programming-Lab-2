@@ -15,7 +15,7 @@ private:
 public:
 	Cnpj();
 	Cnpj(string raiz, string filial, string dv);
-	Cnpj(Cnpj& cnpj);
+	Cnpj(Cnpj &cnpj);
 
 	string getRaiz();
 	void setRaiz(string raiz);

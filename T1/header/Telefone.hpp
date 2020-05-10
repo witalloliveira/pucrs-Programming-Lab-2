@@ -5,7 +5,8 @@
 
 using namespace std;
 
-class Telefone {
+class Telefone
+{
 private:
     int ddi;
     int ddd;
@@ -14,10 +15,11 @@ private:
 public:
     Telefone();
     Telefone(int ddi, int ddd, long numero);
+    Telefone(Telefone &telefone);
 
     int getDDI();
     void setDDI(int ddi);
-    
+
     int getDDD();
     void setDDD(int ddd);
 
@@ -25,8 +27,8 @@ public:
     void setNumero(long numero);
 
     string toString();
-    string toCSV(char separador);
+    string toCSV(char separador = ';');
 
-    bool operator== (const Telefone &tEquals) const;
+    bool operator==(Telefone &telefone);
 };
 #endif // __TELEFONE_H__

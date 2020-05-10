@@ -1,32 +1,78 @@
-// Cnpj.cpp (Roland Teodorowitsch; 29 abr. 2020)
+#include "../header/Cnpj.hpp"
 
-#include <cctype>
 #include <iostream>
-#include "Cnpj.hpp"
+#include <cctype>
+#include <array>
 
-Cnpj::Cnpj() {
-	raiz="00000000";
-    filial="0000";
-    dv="00";
+using namespace std;
+
+Cnpj::Cnpj()
+{
+	setRaiz("00000000");
+	setFilial("0000");
+	setDV("00");
+	//raiz = "00000000";
+	//filial = "0000";
+	//dv = "00";
 }
 
-bool Cnpj::define(string cnpj) {
-	if	(!ehValido(cnpj))
+Cnpj::Cnpj(string raiz, string filial, string dv)
+{
+	setRaiz(raiz);
+	setFilial(filial);
+	setDV(dv);
+}
+
+Cnpj::Cnpj(Cnpj& cnpj)
+{
+	setRaiz(cnpj.getRaiz());
+	setFilial(cnpj.getFilial());
+	setDV(cnpj.getDV());	
+}
+
+string Cnpj::getRaiz() { return raiz; }
+void Cnpj::setRaiz(string raiz) { this->raiz = raiz; }
+
+string Cnpj::getFilial() { return filial; }
+void Cnpj::setFilial(string filial) { this->filial = filial; }
+
+string Cnpj::getDV() { return dv; }
+void Cnpj::setDV(string dv) { this->dv = dv; }
+
+bool Cnpj::setCnpj(string cnpj)
+{
+	if (!isValid(cnpj))
 		return false;
-    if	(cnpj.size()==18) {
-		raiz = cnpj.substr(0,2) + cnpj.substr(3,3) + cnpj.substr(7,3);
-        filial = cnpj.substr(11,4);
-        dv = cnpj.substr(16,2);
-    }
-    else {
-		raiz = cnpj.substr(0,8);
-        filial = cnpj.substr(8,4);
-        dv = cnpj.substr(12,2);
-    }
+
+	array<string, 3> ss;
+	string subStrRaiz;
+	string subStrFilial;
+	string subStrDV;
+
+	if (cnpj.size() == 18)
+	{
+		ss[0] = cnpj.substr(0, 2);
+		ss[1] = cnpj.substr(3, 3);
+		ss[2] = cnpj.substr(7, 3);
+		subStrRaiz = ss[0] + ss[1] + ss[2];
+		subStrFilial = cnpj.substr(11, 4);
+		subStrDV = cnpj.substr(16, 2);
+	}
+	else
+	{
+		subStrRaiz = cnpj.substr(0, 8);
+		subStrFilial = cnpj.substr(8, 4);
+		subStrDV = cnpj.substr(12, 2);
+	}
+
+	setRaiz(subStrRaiz);
+	setFilial(subStrFilial);
+	setDV(subStrDV);
+
 	return true;
 }
 
-bool Cnpj::ehValido(string cnpj) {
+bool Cnpj::isValid(string cnpj) {
 	if	(cnpj.size()==18) { // 00.000.000/0000-00
 		if	(cnpj.at(2)!='.' || cnpj.at(6)!='.' || cnpj.at(10)!='/' || cnpj.at(15)!='-')
 			return false;
@@ -69,26 +115,22 @@ bool Cnpj::ehValido(string cnpj) {
 		return false;
 }
 
-string Cnpj::obtemRaiz() {
-	return raiz;
+string Cnpj::toString()
+{
+	return this->getRaiz().substr(0, 2) +
+		   "." +
+		   this->getRaiz().substr(2, 3) +
+		   "." +
+		   this->getRaiz().substr(5, 3) +
+		   "/" +
+		   this->getFilial() +
+		   "-" +
+		   this->getDV();
 }
 
-string Cnpj::obtemFilial() {
-	return filial;
-}
-
-string Cnpj::obtemDV() {
-	return dv;
-}
-
-string Cnpj::toString() {
-	return raiz.substr(0,2)+"."+raiz.substr(2,3)+"."+raiz.substr(5,3)+"/"+filial+"-"+dv;
-}
-
-bool Cnpj::operator==(Cnpj &cnpj) {
-	if	(raiz.compare(cnpj.obtemRaiz())==0 &&
-         filial.compare(cnpj.obtemFilial())==0 &&
-         dv.compare(cnpj.obtemDV())==0 )
-		return true;
-	return false;	
+bool Cnpj::operator==(Cnpj &cnpj)
+{
+	return (this->getRaiz() == cnpj.getRaiz() &&
+			this->getFilial() == cnpj.getFilial() &&
+			this->getDV() == cnpj.getDV());
 }

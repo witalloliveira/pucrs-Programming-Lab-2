@@ -36,7 +36,7 @@ void Cnpj::setFilial(string filial) { this->filial = filial; }
 string Cnpj::getDV() { return dv; }
 void Cnpj::setDV(string dv) { this->dv = dv; }
 
-bool Cnpj::setCnpj(string cnpj)
+bool Cnpj::setCNPJ(string cnpj)
 {
 	if (!isValid(cnpj))
 		return false;

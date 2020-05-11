@@ -26,7 +26,7 @@ public:
 	string getDV();
 	void setDV(string dv);
 
-	bool setCnpj(string cnpj);
+	bool setCNPJ(string cnpj);
 
 	static bool isValid(string cnpj);
 

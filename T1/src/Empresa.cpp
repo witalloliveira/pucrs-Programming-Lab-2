@@ -3,7 +3,6 @@
 Empresa::Empresa()
 {
     setNome("");
-    setCNPJ(Cnpj().toString()); // DUVIDA
     setInscEst("");
     setEndereco(nullptr);
     setTelefone(nullptr);
@@ -46,7 +45,7 @@ string Empresa::getCNPJ()
 }
 bool Empresa::setCNPJ(string cnpj)
 {
-    this->cnpj.setCNPJ(cnpj); // DUVIDA
+    return this->cnpj.setCNPJ(cnpj); // DUVIDA
 }
 
 string Empresa::getInscEst()
@@ -79,10 +78,14 @@ void Empresa::setTelefone(Telefone *telefone)
 string Empresa::toString()
 {
     return (this->getNome() +
+            ", " +
             this->getCNPJ() +
-            this->getInscEst() + 
-            this->getEndereco()->toString() + // DUVIDA
-            this->getTelefone()->toString()); // DUVIDA
+            ", " +
+            this->getInscEst() +
+            ", " + 
+            this->getEndereco()->toString() +
+            ", " +
+            this->getTelefone()->toString());
 }
 
 string Empresa::toCSV(char separador)
@@ -91,11 +94,11 @@ string Empresa::toCSV(char separador)
             separador +
             this->getCNPJ() +
             separador +
-            this->getInscEst() + // DUVIDA
+            this->getInscEst() +
             separador +
-            this->getEndereco()->toString() + // DUVIDA
+            this->getEndereco()->toCSV() +
             separador +
-            this->getTelefone()->toString()); // DUVIDA
+            this->getTelefone()->toCSV());
 }
 
 bool Empresa::operator==(Empresa &empresa)
@@ -103,6 +106,6 @@ bool Empresa::operator==(Empresa &empresa)
     return (this->getNome() == empresa.getNome() &&
             this->getCNPJ() == empresa.getCNPJ() &&
             this->getInscEst() == empresa.getInscEst() &&
-            this->getEndereco() == empresa.getEndereco() &&
-            this->getTelefone() == empresa.getTelefone());
+            this->getEndereco()->toString() == empresa.getEndereco()->toString() &&
+            this->getTelefone()->toString() == empresa.getTelefone()->toString());
 }

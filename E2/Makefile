@@ -1,7 +1,7 @@
 EXEC = app
 
 SRC = src
-HEADER = include
+HEADER = header
 OBJ = obj
 BIN = bin
 
@@ -28,4 +28,4 @@ run:				$(EXEC)
 					@./$(BIN)/$(EXEC)
 
 clean:
-					@rm -rf *.o app
+					@rm -rf $(OBJ)/*.o $(BIN)/$(EXEC)

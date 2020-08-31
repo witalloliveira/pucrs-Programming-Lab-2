@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////
+//
+//   Project     : Laboratório de Programação II - PUCRS
+//   File        : main.cpp
+//   Description : Programa para somar dois horários [E1/Q3]
+//
+//   Created On: 31/08/2020 03:43:07 AM
+//   Created By: Witallo Oliveira <mailto:witallo.oliveira@edu.pucrs.br>
+////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <iomanip>
 

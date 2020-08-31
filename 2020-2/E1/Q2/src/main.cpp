@@ -1,3 +1,14 @@
+////////////////////////////////////////////////////////////////////////////
+//
+//   Project     : Laboratório de Programação II - PUCRS
+//   File        : main.cpp
+//   Description : Programa para identificar o menor somatório de uma
+//                 linha de matriz e inverter os valores negativos [E1/Q2]
+//
+//   Created On: 31/08/2020 03:44:10 AM
+//   Created By: Witallo Oliveira <mailto:witallo.oliveira@edu.pucrs.br>
+////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <string>
 #include <vector>

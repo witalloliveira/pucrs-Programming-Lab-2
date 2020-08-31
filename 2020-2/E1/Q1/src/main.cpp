@@ -1,3 +1,14 @@
+////////////////////////////////////////////////////////////////////////////
+//
+//   Project     : Laboratório de Programação II - PUCRS
+//   File        : main.cpp
+//   Description : Programa para receber dados e notas de um aluno e 
+//             calcular a média ponderada de acordo com os pesos [E1/Q1]
+//
+//   Created On: 31/08/2020 03:44:10 AM
+//   Created By: Witallo Oliveira <mailto:witallo.oliveira@edu.pucrs.br>
+////////////////////////////////////////////////////////////////////////////
+
 #include <iomanip>
 #include <iostream>
 #include <string>
